@@ -15,8 +15,8 @@ The following variables are used to tweak some of the configuration pieces for u
   ;;       in Emacs and init.el will be generated automatically!
 
   ;; You will most likely need to adjust this font size for your system!
-  (defvar efs/default-font-size 160)
-  (defvar efs/default-variable-font-size 160)
+  (defvar efs/default-font-size 140)
+  (defvar efs/default-variable-font-size 140)
 
   ;; Make frame transparency overridable
   (defvar efs/frame-transparency '(90 . 90))
@@ -1152,7 +1152,7 @@ Dial the GC threshold back down so that garbage collection happens more frequent
 * Starting eshell when launching Emacs
 
 #+begin_src emacs-lisp
-(setq initial-buffer-choice #'eshell)
+;; (setq initial-buffer-choice #'eshell)
 
 #+end_src
 

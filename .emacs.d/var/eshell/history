@@ -1,0 +1,128 @@
+sudo cp -r EXWM.desktop /usr/share/xsessions/
+ls
+cp Xresources ~/.Xresources
+cp Xmodmap ~/.Xmodmap
+sudo systemctl enable sddm
+setxkbmap dk
+yay -S polybar
+sudo pacman -S ttf-unifont siji-git xorg-fonts-misc
+yay -S ttf-unifont siji-git xorg-fonts-misc
+sudo pacman -S dunst
+sudo pacman -S networkmanager-applet
+sudo pacman -S network-manager-applet
+sudo pacman -S pasystray
+sudo pacman -S blueman-applet
+sudo pacman -Ss blueman-applet
+yay -Ss blueman-applet
+sudo pacman -S qutebrowser
+sudo pacman -Ss blueman
+sudo pacman -S blueman
+sudo pacman -S gcolor2
+sudo pacman -S msmtp
+x
+ssh 192.168.0.40
+cd .config/
+ls
+cd dunst/
+ls
+cat dunstrc
+sudo pacman -S notification-daemon
+sudo pacman -S libnotify
+exit
+ls
+ls -all
+x
+exit
+systemctl poweroff
+cd Mail/
+ls
+cd ..
+mv Mail/ kimkruse
+cd kimkruse/
+ls
+cd ..
+mkdir Mail
+mv kimkruse/ Mail/
+ls
+cd Mail/
+ls
+mkdir gmail
+ls
+cd
+mu init --maildir=~/Mail --my-address=kim@kimkruse.xyz --my-address=mail4kruse@gmail.com
+mu index --maildir=~/Mail --my-address=kim@kimkruse.xyz --my-address=mail4kruse@gmail.com
+mbsync -a
+cd Mail/
+ls
+ls gmail/
+mv gmail/ Gmail
+mbsync -a
+exit
+mbsync gmail
+x
+exit
+ls
+ls -all
+ls
+mkdir .dotfiles
+cd .dotfiles/
+drwxr-xr-x   1 kim            kim     echo "# .dotfiles" >> README.md   150 2021-10-10 14:06 Hentet
+ls
+git init
+git config --global init.defaultBranch main
+git branch -m main
+git add README.md
+git commit -m "first commit"
+git config --global user.email "kim@kimkruse.xyz"
+git config --global user.name "ravenkiller1709"
+git commit -m "first commit"
+git remote add origin git@github.com:ravenkiller1709/.dotfiles.git
+git push -u origin main
+ls
+ls -all ../
+cd ..
+ls
+cd .emacs.d/
+ls
+sudo rm -r .git*
+ls --all
+cd show-notes/
+ls
+cd ..
+ls
+cd ..
+mv .emacs.d/ .dotfiles/
+ln -sf ~/.dotfiles/.emacs.d/ ~/.emacs.d
+ls -all
+mv .config/zsh/ .dotfiles/
+cd .dotfiles/
+ls
+cd ..
+ln -sf ~/.dotfiles/zsh/ ~/.config/zsh
+cd .config/
+ls -all
+cd zsh/
+ls
+ls -all
+cd
+ls -all
+cat .zshrc
+ls
+ls -al
+mv .mbsyncrc .dotfiles/
+ln -sf ~/.dotfiles/.mbsyncrc ~/.mbsyncrc
+ls -all
+mv .scripts/ .dotfiles/
+ln -sf ~/.dotfiles/.scripts/ ~/.scripts
+ls -all
+cd .config/
+ls -al
+mv mpd/ ~/.dotfiles/
+ln -sf ~/.dotfiles/mpd/ ~/.config/mpd
+ls -all
+cd
+cd .dotfiles/
+ls -all
+git add .emacs.d/ .mbsyncrc .scripts/ mpd/ zsh/
+git commit -a
+exit

@@ -1,0 +1,8 @@
+#!/bin/sh
+xrdb -load ~/.Xresources &
+setxkbmap dk &
+xsetroot -cursor_name left_ptr &
+picom &
+feh --bg-scale ~/.baggrunde/wall.jpg &
+slstatus &
+exec dwm

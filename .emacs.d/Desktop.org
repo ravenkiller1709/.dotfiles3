@@ -114,11 +114,11 @@ We use the excellent [[https://github.com/ch11ng/exwm][EXWM]] module as the basi
     ;; Set the screen resolution (update this to be the correct resolution for your screen!)
     (require 'exwm-randr)
     (exwm-randr-enable)
-    (start-process-shell-command "xrandr" nil "xrandr --output Virtual-1 --primary --mode 2048x1152 --pos 0x0 --rotate normal")
+    (start-process-shell-command "xrandr" nil "xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal")
 
     ;; This will need to be updated to the name of a display!  You can find
     ;; the names of your displays by looking at arandr or the output of xrandr
-    (setq exwm-randr-workspace-monitor-plist '(2 "Virtual-2" 3 "Virtual-2"))
+    ;;(setq exwm-randr-workspace-monitor-plist '(2 "Virtual-2" 3 "Virtual-2"))
 
     ;; NOTE: Uncomment these lines after setting up autorandr!
     ;; React to display connectivity changes, do initial display update
@@ -324,147 +324,148 @@ The configuration for our ingeniously named panel, "panel".  Invoke it with =pol
 
 #+begin_src conf :tangle ~/.config/polybar/config :mkdirp yes
 
-; Docs: https://github.com/polybar/polybar
-;==========================================================
+  ; Docs: https://github.com/polybar/polybar
+  ;==========================================================
 
-[settings]
-screenchange-reload = true
+  [settings]
+  screenchange-reload = true
 
-[global/wm]
-margin-top = 0
-margin-bottom = 0
+  [global/wm]
+  margin-top = 0
+  margin-bottom = 0
 
-[colors]
-background = #f0222222
-background-alt = #576075
-foreground = #BCBAB2
-foreground-alt = #555
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
-underline-1 = #c792ea
+  [colors]
+  background = #f0222222
+  background-alt = #576075
+  foreground = #BCBAB2
+  foreground-alt = #555
+  primary = #ffb52a
+  secondary = #e60053
+  alert = #bd2c40
+  underline-1 = #c792ea
 
-[bar/panel]
-width = 100%
-height = 35
-offset-x = 0
-offset-y = 0
-fixed-center = true
-enable-ipc = true
+  [bar/panel]
+  width = 100%
+  height = 32
+  offset-x = 0
+  offset-y = 0
+  dpi = 84
+  fixed-center = true
+  enable-ipc = true
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+  background = ${colors.background}
+  foreground = ${colors.foreground}
 
-line-size = 2
-line-color = #f00
+  line-size = 2
+  line-color = #f00
 
-border-size = 0
-border-color = #00000000
+  border-size = 0
+  border-color = #00000000
 
-padding-top = 5
-padding-left = 1
-padding-right = 1
+  padding-top = 5
+  padding-left = 1
+  padding-right = 1
 
-module-margin = 1
+  module-margin = 1
 
-font-0 = "Cantarell:size=18:weight=bold;2"
-font-1 = "Font Awesome:size=14;2"
-font-2 = "Material Icons:size=20;5"
-font-3 = "Fira Mono:size=13;-3"
+  font-0 = "Cantarell:size=14:weight=bold;2"
+  font-1 = "Font Awesome:size=12;2"
+  font-2 = "Material Icons:size=14;5"
+  font-3 = "Fira Mono:size=11;-3"
 
-modules-left = exwm-workspace
-modules-right = cpu temperature date
+  modules-left = exwm-workspace
+  modules-right = cpu temperature date
 
-tray-position = right
-tray-padding = 2
-tray-maxsize = 28
+  tray-position = right
+  tray-padding = 2
+  tray-maxsize = 28
 
-cursor-click = pointer
-cursor-scroll = ns-resize
+  cursor-click = pointer
+  cursor-scroll = ns-resize
 
-[module/exwm-workspace]
-type = custom/ipc
-hook-0 = emacsclient -e "exwm-workspace-current-index" | sed -e 's/^"//' -e 's/"$//'
-initial = 1
-#format-underline = ${colors.underline-1}
-format-padding = 1
+  [module/exwm-workspace]
+  type = custom/ipc
+  hook-0 = emacsclient -e "exwm-workspace-current-index" | sed -e 's/^"//' -e 's/"$//'
+  initial = 1
+  #format-underline = ${colors.underline-1}
+  format-padding = 1
 
-[module/cpu]
-type = internal/cpu
-interval = 2
-format = <label> <ramp-coreload>
-#format-underline = ${colors.underline-1}
-click-left = emacsclient -e "(proced)"
-label = %percentage:2%%
-ramp-coreload-spacing = 0
-ramp-coreload-0 = ▁
-ramp-coreload-0-foreground = ${colors.foreground-alt}
-ramp-coreload-1 = ▂
-ramp-coreload-2 = ▃
-ramp-coreload-3 = ▄
-ramp-coreload-4 = ▅
-ramp-coreload-5 = ▆
-ramp-coreload-6 = ▇
+  [module/cpu]
+  type = internal/cpu
+  interval = 2
+  format = <label> <ramp-coreload>
+  #format-underline = ${colors.underline-1}
+  click-left = emacsclient -e "(proced)"
+  label = %percentage:2%%
+  ramp-coreload-spacing = 0
+  ramp-coreload-0 = ▁
+  ramp-coreload-0-foreground = ${colors.foreground-alt}
+  ramp-coreload-1 = ▂
+  ramp-coreload-2 = ▃
+  ramp-coreload-3 = ▄
+  ramp-coreload-4 = ▅
+  ramp-coreload-5 = ▆
+  ramp-coreload-6 = ▇
 
-[module/date]
-type = internal/date
-interval = 5
+  [module/date]
+  type = internal/date
+  interval = 5
 
-date = "%a %b %e"
-date-alt = "%A %B %d %Y"
+  date-alt = "%a %b %e"
+  date = "%A %B %d %Y"
 
-time = %l:%M %p
-time-alt = %H:%M:%S
+  time-alt = %l:%M %p
+  time = %H:%M:%S
 
-format-prefix-foreground = ${colors.foreground-alt}
-#format-underline = ${colors.underline-1}
+  format-prefix-foreground = ${colors.foreground-alt}
+  #format-underline = ${colors.underline-1}
 
-label = %date% %time%
+  label = %date% %time%
 
-[module/battery]
-type = internal/battery
-battery = BAT0
-adapter = ADP1
-full-at = 98
-time-format = %-l:%M
+  [module/battery]
+  type = internal/battery
+  battery = BAT0
+  adapter = ADP1
+  full-at = 98
+  time-format = %-l:%M
 
-label-charging = %percentage%% / %time%
-format-charging = <animation-charging> <label-charging>
-#format-charging-underline = ${colors.underline-1}
+  label-charging = %percentage%% / %time%
+  format-charging = <animation-charging> <label-charging>
+  #format-charging-underline = ${colors.underline-1}
 
-label-discharging = %percentage%% / %time%
-format-discharging = <ramp-capacity> <label-discharging>
-#format-discharging-underline = ${self.format-charging-underline}
+  label-discharging = %percentage%% / %time%
+  format-discharging = <ramp-capacity> <label-discharging>
+  #format-discharging-underline = ${self.format-charging-underline}
 
-format-full = <ramp-capacity> <label-full>
-#format-full-underline = ${self.format-charging-underline}
+  format-full = <ramp-capacity> <label-full>
+  #format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+  ramp-capacity-0 = 
+  ramp-capacity-1 = 
+  ramp-capacity-2 = 
+  ramp-capacity-3 = 
+  ramp-capacity-4 = 
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
-animation-charging-framerate = 750
+  animation-charging-0 = 
+  animation-charging-1 = 
+  animation-charging-2 = 
+  animation-charging-3 = 
+  animation-charging-4 = 
+  animation-charging-framerate = 750
 
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
+  [module/temperature]
+  type = internal/temperature
+  thermal-zone = 0
+  warn-temperature = 60
 
-format = <label>
-#format-underline = ${colors.underline-1}
-format-warn = <label-warn>
-#format-warn-underline = ${self.format-underline}
+  format = <label>
+  #format-underline = ${colors.underline-1}
+  format-warn = <label-warn>
+  #format-warn-underline = ${self.format-underline}
 
-label = %temperature-c%
-label-warn = %temperature-c%!
-label-warn-foreground = ${colors.secondary}
+  label = %temperature-c%
+  label-warn = %temperature-c%!
+  label-warn-foreground = ${colors.secondary}
 
 #+end_src
 

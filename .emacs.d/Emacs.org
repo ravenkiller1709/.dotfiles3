@@ -1244,7 +1244,7 @@ Dial the GC threshold back down so that garbage collection happens more frequent
 
 #+begin_src
 ;; let's get encryption established
-(setf epg-pinentry-mode 'loopback)
+(setf epa-pinentry-mode 'loopback)
 (defun pinentry-emacs (desc prompt ok error)
   (let ((str (read-passwd
               (concat (replace-regexp-in-string "%22" "\""
